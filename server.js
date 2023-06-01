@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const app = require("./app");
-const { DB_HOST } = require("./config");
+const { DB_HOST, PORT = 3000 } = process.env;
 
 mongoose
   .connect(DB_HOST)
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
       console.log("Server running. Use our API on port: 3000");
     });
   })
@@ -13,5 +13,3 @@ mongoose
     console.log(error.message);
     process.exit(1);
   });
-
-// mongodb+srv://Larik:<password>@cluster0.dosr8jl.mongodb.net/
