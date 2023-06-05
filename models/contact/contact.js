@@ -42,6 +42,7 @@ const contactAddSchema = Joi.object({
     .max(15)
     .trim()
     .required(),
+  favorite: Joi.boolean(),
 });
 
 const updateFavoriteSchema = Joi.object({
