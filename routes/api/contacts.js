@@ -2,7 +2,7 @@ const express = require("express");
 
 const contactsController = require("../../controllers/contacts-controllers");
 
-const schemas = require("../../schemas/contacts-schemas");
+const { schemas } = require("../../models/contact/contact");
 
 const { validateBody, isValidId } = require("../../decorators");
 
@@ -18,6 +18,6 @@ router.delete("/:id", isValidId, contactsController.removeContact);
 
 router.put("/:id", isValidId, validateBody(schemas.contactAddSchema), contactsController.updateContact);
 
-router.patch("/:id/favorite", isValidId, contactsController.updateStatusContact);
+router.patch("/:id/favorite", isValidId, validateBody(schemas.updateFavoriteSchema), contactsController.updateStatusContact);
 
 module.exports = router;
