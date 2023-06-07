@@ -6,7 +6,11 @@ const { schemas } = require("../../models/contact/contact");
 
 const { validateBody, isValidId } = require("../../decorators");
 
+const {authenticate} = require("../../middlewares/authenticate")
+
 const router = express.Router();
+
+router.use(authenticate);
 
 router.get("/", contactsController.listContacts);
 
