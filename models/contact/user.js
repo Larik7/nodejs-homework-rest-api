@@ -28,7 +28,7 @@ userSchema.post("save", HandleMongooseError);
 
 const registerSchema = Joi.object({
   password: Joi.string()
-    .pattern("^[a-zA-Z0-9]{6,20}$")
+    .pattern(new RegExp("^[a-zA-Z0-9]{6,20}$"))
     .min(6)
     .required(),
   email: Joi.string()
