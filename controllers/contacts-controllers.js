@@ -1,7 +1,5 @@
 const { Contact } = require("../models/contact/contact");
-
 const { HttpError } = require("../helpers");
-
 const { ctrlWrapper } = require("../decorators");
 
 const listContacts = async (req, res) => {
