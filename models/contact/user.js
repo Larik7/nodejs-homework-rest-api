@@ -52,6 +52,7 @@ const registerSchema = Joi.object({
   subscription: Joi.string().required(),
   token: Joi.string().token(),
 });
+
 const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
   email: Joi.string()
