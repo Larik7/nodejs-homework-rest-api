@@ -29,7 +29,7 @@ const register = async (req, res) => {
     const verifyEmail = {
         to: email,
         subject: "Verification successful",
-        html: `<a target="_blank" href="${PROJECT_URL}/api/auth-controllers/verify/${verificationToken}" >Click to verify email</a>`,
+        html: `<a target="_blank" href="${PROJECT_URL}/api/auth-routers/verify/${verificationToken}" >Click to verify email</a>`,
     };
     await sendEmail(verifyEmail);
 
@@ -45,7 +45,7 @@ const verify = async (req, res) => {
     if (!user) {
         throw HttpError(404, "User not found");
     }
-    await user.findByIdAndUpdate(user._id, {verify: true, verificationToken: ""});
+    await User.findByIdAndUpdate(user._id, {verify: true, verificationToken: ""});
     res.json({
         message: "Verification successful"
     })
@@ -63,7 +63,7 @@ const resendVerify = async (req, res) => {
     const verifyEmail = {
         to: email,
         subject: "Verification successful",
-        html: `<a target="_blank" href="${PROJECT_URL}/api/auth-controllers/verify/${user.verificationToken}" >Click to verify email</a>`,
+        html: `<a target="_blank" href="${PROJECT_URL}/api/auth-routers/verify/${user.verificationToken}" >Click to verify email</a>`,
     };
     await sendEmail(verifyEmail);
 
