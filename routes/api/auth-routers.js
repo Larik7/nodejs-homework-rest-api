@@ -6,6 +6,8 @@ const {schemas} = require("../../models/contact/user");
 const {validateBody} = require("../../decorators");
 
 router.post("/register", validateBody(schemas.registerSchema), authControllers.register);
+router.get("/verify/:verificationToken", authControllers.verify);
+router.post("/verify", validateBody(schemas.userEmailSchema), authControllers.resendVerify)
 router.post("/login", validateBody(schemas.loginSchema), authControllers.login);
 router.get("/current", authenticate, authControllers.getCurrent);
 router.post("/logout", authenticate, authControllers.logout);
